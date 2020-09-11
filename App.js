@@ -16,7 +16,7 @@ export default function App() {
     } else {
       setNumber(number - 1)
         , 1000; if(number != 0){
-          alert('Contador em andamento!')
+          alert('Contador em andamento!') //yeeah!
         }
     }
 
