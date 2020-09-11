@@ -1,76 +1,50 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, Button } from 'react-native';
 
 import CountDown from 'react-native-countdown-component';
 
+import ReactNativeAN from 'react-native-alarm-notification';
+
 export default function App() {
 
-  const [number, setNumber] = useState()
+  const [number, setNumber] = useState(0);
 
-//   const timer = props => {
-//   const [seg, setSeg] = useState(0);
+  function handleAdd() {
 
-//   setInterval(() => {
-//     if (seg == 0) alert("Tempo Acabou");
-//     if (seg > 0) setSeg(seg - 1);
-//   }, 1000);
+    if (number == 0) {
+      alert("Tempo zerado!");
+    } else {
+      setNumber(number - 1)
+        , 1000; if(number != 0){
+          alert('Contador em andamento!')
+        }
+    }
 
-//   return (
-//     <TextInput
-//       value={seg.toString()}
-//       onChangeText={text => setSeg(Number.parteInt(text))}
-//       keyboardType='numeric'
-//     />
-//   )
-// }
-
-function handleAdd(){
-  
-  var numberStr = number.toString();
-
-  if(number == 0){
-    alert("time 0");
-  } else{
-    return(
-      <CountDown
-      until={number}
-      onFinish={() => alert(number)}
-      onPress={() => alert('hello')}
-      size={20}
-    />
-    )
   }
 
+  return (
+    <View style={styles.container}>
 
-}
+      <CountDown
+        until={number}
+        onFinish={() => alert('Acabou o tempo!')}
+        size={20}
+      />
 
-return (
-  <View style={styles.container}>
+      <TextInput style={styles.textInput}
+        multiline={true}
+        placeholder="Type the seconds"
+        placeholderTextColor="#000"
+        keyboardType='numeric'
+        onChangeText={(value) => setNumber(value)}
+        defaultValue={number}>
+      </TextInput>
 
-    <CountDown
-      until={number}
-      onFinish={() => alert()}
-      onPress={() => alert('hello')}
-      size={20}
-    />
-
-    <TextInput style={styles.textInput}
-      
-      placeholder="Type the seconds"
-      placeholderTextColor="#000"
-      
-      onChangeText={(value) => setNumber(value)}>
-    </TextInput>
-
-    <TouchableOpacity style={styles.button} onPress={handleAdd}>
-      <Text style={styles.buttonText}>Press me</Text>
-    </TouchableOpacity>
-
-    <TouchableOpacity style={styles.button}>
-      <Text style={styles.buttonText}>Press me2</Text>
-    </TouchableOpacity>
-  </View>
-)
+      <TouchableOpacity style={styles.button} onPress={handleAdd}>
+        <Text style={styles.buttonText}>Press me</Text>
+      </TouchableOpacity>
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({
